@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class Fighter : MonoBehaviour
@@ -18,6 +19,8 @@ public class Fighter : MonoBehaviour
 
     protected Animator animator;
     private Rigidbody myBody;
+    public Image health_UI;
+    [SerializeField]
 
     // Start is called before the first frame update
     void Start()
@@ -82,6 +85,11 @@ public class Fighter : MonoBehaviour
             if (health >= damage)
             {
                 health -= damage;
+                if (health_UI != null)
+                {
+                    health_UI.fillAmount = health / 100f;
+                }
+
             }
             else
                 health = 0;
