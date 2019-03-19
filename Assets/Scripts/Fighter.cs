@@ -9,6 +9,9 @@ public class Fighter : MonoBehaviour
         HUMAN, AI
     };
 
+    public static float MAX_HEALTH = 100f;
+
+    public float health = MAX_HEALTH;
     public string fighterName;
     public PlayerType player;
     public FighterStates currentState = FighterStates.IDLE;
@@ -55,12 +58,55 @@ public class Fighter : MonoBehaviour
             animator.SetBool("DEFEND", false);
     }
 
+    public bool invulnerable
+    {
+        get
+        {
+            return currentState == FighterStates.TAKE_HIT || currentState == FighterStates.TAKE_HIT_DEFEND
+                || currentState == FighterStates.DEAD;
+        }
+    }
+
+    public bool attacking
+    {
+        get
+        {
+            return currentState == FighterStates.ATTACK;
+        }
+    }
+
+    public virtual void hurt(float damage)
+    {
+        if(!invulnerable)
+        {
+            if (health >= damage)
+            {
+                health -= damage;
+            }
+            else
+                health = 0;
+            if (health > 0)
+            {
+                animator.SetTrigger("TAKE_HIT");
+            }
+        }
+        if(invulnerable)
+        {
+            currentState = FighterStates.IDLE;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (player == PlayerType.HUMAN)
         {
             UpdateHumanInput();
+        }
+
+        if(health <= 0 && currentState != FighterStates.DEAD)
+        {
+            animator.SetTrigger("DEAD");
         }
     }
 
