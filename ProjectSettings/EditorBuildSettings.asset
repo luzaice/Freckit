@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RyuWithMap.unity
     guid: 116e9175e7ee9c9429aed528f4202abe
+  - enabled: 1
+    path: Assets/Scenes/Player vs bot.unity
+    guid: 7e917c732850aac4692a995f93410653
   m_configObjects: {}
