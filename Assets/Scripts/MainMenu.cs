@@ -7,7 +7,6 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayPLAYERvPLAYER()
     {
-
         SceneManager.LoadScene(1);
     }
 

@@ -12,6 +12,7 @@ public class HitColider : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Fighter somebody = other.gameObject.GetComponent<Fighter>();
+        Animator animator = GetComponent<Animator>();
 
         if(owner.attacking)
         {
@@ -19,6 +20,7 @@ public class HitColider : MonoBehaviour
             {
                 //Debug.Log("I hit somebody");
                 somebody.hurt(damage);
+               // animator.SetTrigger("ATTACK");
             }
         }
     }
