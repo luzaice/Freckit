@@ -98,7 +98,7 @@ public class Fighter : MonoBehaviour
                 animator.SetTrigger("TAKE_HIT");
             }
         }
-        if(invulnerable)
+        if(invulnerable && currentState != FighterStates.DEAD)
         {
             currentState = FighterStates.IDLE;
         }
