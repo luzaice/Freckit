@@ -11,7 +11,11 @@ public class Fighter : MonoBehaviour
     };
 
     public static float MAX_HEALTH = 100f;
+    public static float STANDARD_ATTACK = 1f;
+    public static float STANDARD_DEFENSE = 1f;
+    public static float STANDARD_SPEED = 1f;
 
+    public float maxHealth = MAX_HEALTH; //In the off chance max health is ever not 100
     public float health = MAX_HEALTH;
     public string fighterName;
     public PlayerType player;
@@ -20,6 +24,9 @@ public class Fighter : MonoBehaviour
     protected Animator animator;
     private Rigidbody myBody;
     public Image health_UI;
+    public float attackMultiplier = STANDARD_ATTACK;
+    public float defenseMultiplier = STANDARD_DEFENSE;
+    public float speedMultiplier = STANDARD_SPEED;
     [SerializeField]
 
     // Start is called before the first frame update
@@ -122,15 +129,14 @@ public class Fighter : MonoBehaviour
             if (health >= damage)
             {
                 health -= damage;
-                if (health_UI != null)
-                {
-                    health_UI.fillAmount = health / 100f;
-                }
 
             }
             else
             {
                 health = 0;
+            }
+            if (health_UI != null)
+            {
                 health_UI.fillAmount = health / 100f;
             }
             if (health > 0)
@@ -138,7 +144,7 @@ public class Fighter : MonoBehaviour
                 animator.SetTrigger("TAKE_HIT");
             }
         }
-        if(invulnerable)
+        if(invulnerable && currentState != FighterStates.DEAD)
         {
             currentState = FighterStates.IDLE;
         }
