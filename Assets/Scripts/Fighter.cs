@@ -7,8 +7,12 @@ public class Fighter : MonoBehaviour
 {
     public enum PlayerType
     {
-        HUMAN1, HUMAN2, AI1, AI2, AI3
+        HUMAN1, HUMAN2, EASYBOT
     };
+
+    public Transform player1, player2;
+    float distance_x;
+    int rand;
 
     public static float MAX_HEALTH = 100f;
     public static float STANDARD_ATTACK = 1f;
@@ -34,6 +38,12 @@ public class Fighter : MonoBehaviour
     {
         myBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+    }
+
+    IEnumerator Wait()
+    {
+        yield return new WaitForSeconds(1.5f);
+        rand = Random.Range(0, 4);
     }
     
     public void UpdateHumanInput()
@@ -105,6 +115,32 @@ public class Fighter : MonoBehaviour
         }
     }
 
+    public void UpdateBotInput(float distance, int rand)
+    {
+        if (player.ToString() == "EASYBOT")
+        {
+            Debug.Log("ABC");
+            if (distance >= 1.3)
+            {
+                animator.SetBool("DEFEND", false);
+                animator.SetBool("WALK", true);
+            }
+            else
+            {
+                animator.SetBool("WALK", false);
+                animator.SetBool("DEFEND", false);
+                if (rand == 1)
+                    animator.SetTrigger("KICK");
+                else if (rand == 2)
+                    animator.SetTrigger("PUNCH");
+                else if (rand == 3)
+                    animator.SetBool("DEFEND", true);
+
+                Debug.Log(rand);
+            }
+        }
+    }
+
     public bool invulnerable
     {
         get
@@ -160,6 +196,12 @@ public class Fighter : MonoBehaviour
         if (player == PlayerType.HUMAN2)
         {
             UpdateHumanInput();
+        }
+        if (player == PlayerType.EASYBOT)
+        {
+            distance_x = player2.position.x - player1.position.x;
+            StartCoroutine(Wait());
+            UpdateBotInput(distance_x, rand);
         }
 
         if(health <= 0 && currentState != FighterStates.DEAD)
