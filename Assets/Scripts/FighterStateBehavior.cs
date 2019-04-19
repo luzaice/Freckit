@@ -18,8 +18,8 @@ public class FighterStateBehavior : StateMachineBehaviour
             fighter = animator.gameObject.GetComponent<Fighter>();
         }
 
-        fighter.currentState = behaviorState;
 
+        fighter.currentState = behaviorState;
         fighter.body.AddRelativeForce(new Vector3(0, verticalForce, 0));
     }
 
