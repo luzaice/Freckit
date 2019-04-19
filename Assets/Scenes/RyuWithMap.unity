@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -903,11 +903,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896d88d1fc9bf4d4da86e93d4c867dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
   health: 100
   fighterName: Ryu
   player: 0
   currentState: 0
   health_UI: {fileID: 406577744}
+  attackMultiplier: 1
+  defenseMultiplier: 1
+  speedMultiplier: 1
 --- !u!136 &711522771
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1136,6 +1140,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ryu2
       objectReference: {fileID: 0}
+    - target: {fileID: 100168, guid: 64ca96e3ebec8904a9052744924f1610, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 400168, guid: 64ca96e3ebec8904a9052744924f1610, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1305,6 +1313,7 @@ GameObject:
   - component: {fileID: 1014111672}
   - component: {fileID: 1014111671}
   - component: {fileID: 1014111670}
+  - component: {fileID: 1014111673}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1360,6 +1369,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1014111673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014111669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8be759a727ee7e343be61625dbed30c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1253619134 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100140, guid: 79cb1b99a3a25064bb6ed8d0810792c6,
@@ -1398,11 +1419,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896d88d1fc9bf4d4da86e93d4c867dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 100
   health: 100
   fighterName: Ken
   player: 1
   currentState: 0
   health_UI: {fileID: 1590688296}
+  attackMultiplier: 1
+  defenseMultiplier: 1
+  speedMultiplier: 1
 --- !u!54 &1253619139
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1850,6 +1875,10 @@ PrefabInstance:
     - target: {fileID: 100140, guid: 79cb1b99a3a25064bb6ed8d0810792c6, type: 3}
       propertyPath: m_Name
       value: ken
+      objectReference: {fileID: 0}
+    - target: {fileID: 100140, guid: 79cb1b99a3a25064bb6ed8d0810792c6, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 400140, guid: 79cb1b99a3a25064bb6ed8d0810792c6, type: 3}
       propertyPath: m_LocalPosition.x
