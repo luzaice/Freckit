@@ -162,9 +162,9 @@ public class Fighter : MonoBehaviour
     {
         if(!invulnerable)
         {
-            if (health >= damage)
+            if (health >= damage / defenseMultiplier)
             {
-                health -= damage;
+                health -= damage / defenseMultiplier;
 
             }
             else
