@@ -25,6 +25,20 @@ public class HudController : MonoBehaviour
         leftText.text = player1.fighterName;
         rightText.text = player2.fighterName;
     }
+    
+    //End1 is called when a player won a round, but not the whole match
+    IEnumerator End1()
+    {
+        yield return new WaitForSeconds(3.0f);
+        SceneManager.LoadScene(0);
+    }
+
+    //End2 is called when a player won a match, the scene is set to the main menu
+    IEnumerator End2()
+    {
+        yield return new WaitForSeconds(3.0f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
     // Update is called once per frame
     void Update()
@@ -39,29 +53,31 @@ public class HudController : MonoBehaviour
                 if (player1.health < player2.health)
                 {
                     fighterTwoWins++;
-                    Debug.Log(fighterTwoWins);
                     if (fighterTwoWins == 2)
                     {
                         fighterTwoWins = 0;
                         fighterOneWins = 0;
-                        SceneManager.LoadScene(0);
+                        StartCoroutine(End1());
                     }
                     else
-                        SceneManager.LoadScene(1);
+                    {
+                        StartCoroutine(End2());
+                    }
                 }
 
                 else if (player2.health < player1.health)
                 {
                     fighterOneWins++;
-                    Debug.Log(fighterTwoWins);
                     if (fighterOneWins == 2)
                     {
                         fighterTwoWins = 0;
                         fighterOneWins = 0;
-                        SceneManager.LoadScene(0);
+                        StartCoroutine(End1());
                     }
                     else
-                        SceneManager.LoadScene(1);
+                    {
+                        StartCoroutine(End2());
+                    }
                 }
             }
             if (player1.health <= 0)
@@ -72,10 +88,12 @@ public class HudController : MonoBehaviour
                 {
                     fighterTwoWins = 0;
                     fighterOneWins = 0;
-                    SceneManager.LoadScene(0);
+                    StartCoroutine(End1());
                 }
                 else
-                SceneManager.LoadScene(1);
+                {
+                    StartCoroutine(End2());
+                }
             }
 
             if (player2.health <= 0)
@@ -85,42 +103,13 @@ public class HudController : MonoBehaviour
                 {
                     fighterTwoWins = 0;
                     fighterOneWins = 0;
-                    SceneManager.LoadScene(0);
+                    StartCoroutine(End1());
                 }
                 else
-                SceneManager.LoadScene(1);
-            }
-        }
-
-        if (roundTime == 0)
-        {
-            /*if (player1.health < player2.health)
-            {
-                fighterTwoWins++;
-                Debug.Log(fighterTwoWins);
-                if (fighterTwoWins == 2)
                 {
-                    fighterTwoWins = 0;
-                    fighterOneWins = 0;
-                    SceneManager.LoadScene(0);
+                    StartCoroutine(End2());
                 }
-                else
-                SceneManager.LoadScene(1);
             }
-
-            else  if (player2.health < player1.health)
-            {
-                fighterOneWins++;
-                Debug.Log(fighterTwoWins);
-                if (fighterOneWins == 2)
-                {
-                    fighterTwoWins = 0;
-                    fighterOneWins = 0;
-                    SceneManager.LoadScene(0);
-                }
-                else
-                    SceneManager.LoadScene(1);
-            }*/
         }
     }
 }

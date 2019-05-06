@@ -19,7 +19,7 @@ public class HitColider : MonoBehaviour
             if (somebody != null && somebody != owner)
             {
                 //Debug.Log("I hit somebody");
-                somebody.hurt(damage);
+                somebody.hurt(damage * owner.attackMultiplier);
                // animator.SetTrigger("ATTACK");
             }
         }

@@ -25,6 +25,6 @@ public class FighterStateBehavior : StateMachineBehaviour
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        fighter.body.AddRelativeForce(new Vector3(0, 0, horizontalForce));
+        fighter.body.AddRelativeForce(new Vector3(0, 0, horizontalForce * fighter.speedMultiplier));
     }
 }

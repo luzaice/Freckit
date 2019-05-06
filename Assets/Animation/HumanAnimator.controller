@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8563da02c5470f34086f9ba0645d7fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalForce: -50
+  horizontalForce: -10
   verticalForce: 200
   behaviorState: 3
 --- !u!114 &114135528930473360
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8563da02c5470f34086f9ba0645d7fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalForce: 50
+  horizontalForce: 15
   verticalForce: 250
   behaviorState: 3
 --- !u!114 &114288144680161698
@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8563da02c5470f34086f9ba0645d7fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalForce: 80
+  horizontalForce: 30
   verticalForce: 0
   behaviorState: 1
 --- !u!114 &114969395247635422
@@ -289,7 +289,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8563da02c5470f34086f9ba0645d7fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalForce: -50
+  horizontalForce: -20
   verticalForce: 0
   behaviorState: 2
 --- !u!1101 &1101002940993818262
