@@ -7,7 +7,7 @@ public class Fighter : MonoBehaviour
 {
     public enum PlayerType
     {
-        HUMAN1, HUMAN2, EASYBOT
+        HUMAN1, HUMAN2, EASYBOT, MEDIUMBOT
     };
 
     public Transform player1, player2;
@@ -25,6 +25,9 @@ public class Fighter : MonoBehaviour
     public PlayerType player;
     public FighterStates currentState = FighterStates.IDLE;
 
+    private float nextActionTime = 0.0f;
+    public float period = 0.7f;
+
     protected Animator animator;
     private Rigidbody myBody;
     public Image health_UI;
@@ -38,12 +41,6 @@ public class Fighter : MonoBehaviour
     {
         myBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-    }
-
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(1.5f);
-        rand = Random.Range(0, 4);
     }
     
     public void UpdateHumanInput()
@@ -139,6 +136,11 @@ public class Fighter : MonoBehaviour
                 Debug.Log(rand);
             }
         }
+
+        else if (player.ToString() == "MEDIUMBOT")
+        {
+
+        }
     }
 
     public bool invulnerable
@@ -197,10 +199,11 @@ public class Fighter : MonoBehaviour
         {
             UpdateHumanInput();
         }
-        if (player == PlayerType.EASYBOT)
+        if (Time.time > nextActionTime && player == PlayerType.EASYBOT || Time.time > nextActionTime && player == PlayerType.MEDIUMBOT )
         {
+            nextActionTime += period;
             distance_x = player2.position.x - player1.position.x;
-            StartCoroutine(Wait());
+            rand = Random.Range(0, 4);
             UpdateBotInput(distance_x, rand);
         }
 

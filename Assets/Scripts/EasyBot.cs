@@ -55,12 +55,12 @@ public class EasyBot : MonoBehaviour
         {
             animator.SetBool("WALK", false);
             animator.SetBool("DEFEND", false);
-            if (rand == 1)
+            /*if (rand == 1)
                 animator.SetTrigger("KICK");
             else if (rand == 2)
                 animator.SetTrigger("PUNCH");
             else if (rand == 3)
-                animator.SetBool("DEFEND", true);
+                animator.SetBool("DEFEND", true);*/
 
             Debug.Log(rand);
         }
