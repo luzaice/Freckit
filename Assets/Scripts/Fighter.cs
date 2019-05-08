@@ -112,11 +112,11 @@ public class Fighter : MonoBehaviour
         }
     }
 
-    public void UpdateBotInput(float distance, int rand)
+    public void UpdateBotInput(float distance)
     {
         if (player.ToString() == "EASYBOT")
         {
-            Debug.Log("ABC");
+            rand = Random.Range(0, 4);
             if (distance >= 1.3)
             {
                 animator.SetBool("DEFEND", false);
@@ -132,14 +132,47 @@ public class Fighter : MonoBehaviour
                     animator.SetTrigger("PUNCH");
                 else if (rand == 3)
                     animator.SetBool("DEFEND", true);
-
-                Debug.Log(rand);
             }
         }
 
         else if (player.ToString() == "MEDIUMBOT")
         {
+            if (distance >= 1.3)
+            {
+                rand = Random.Range(0, 4);
+                animator.SetBool("DUCK", false);
+                if (rand <= 1)
+                {
+                    animator.SetBool("DEFEND", false);
+                    animator.SetBool("WALK", true);
+                }
+                else
+                {
+                    animator.SetBool("DEFEND", true);
+                    animator.SetBool("WALK", false);
+                }
+            }
 
+            else
+            {
+                rand = Random.Range(0, 5);
+                animator.SetBool("WALK", false);
+                animator.SetBool("DEFEND", false);
+                animator.SetBool("DUCK", false);
+                if (rand == 1 || rand == 0)
+                    animator.SetTrigger("KICK");
+                else if (rand == 2)
+                {
+                    animator.SetTrigger("PUNCH");
+                    animator.SetTrigger("PUNCH");
+                    animator.SetTrigger("PUNCH");
+                    animator.SetTrigger("PUNCH");
+                }
+                else if (rand == 3)
+                    animator.SetBool("DEFEND", true);
+                else
+                    animator.SetBool("DUCK", true);
+            }
         }
     }
 
@@ -203,8 +236,7 @@ public class Fighter : MonoBehaviour
         {
             nextActionTime += period;
             distance_x = player2.position.x - player1.position.x;
-            rand = Random.Range(0, 4);
-            UpdateBotInput(distance_x, rand);
+            UpdateBotInput(distance_x);
         }
 
         if(health <= 0 && currentState != FighterStates.DEAD)

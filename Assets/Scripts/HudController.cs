@@ -16,6 +16,7 @@ public class HudController : MonoBehaviour
     private float lastTimeUpdate = 0;
     public static int fighterOneWins = 0;
     public static int fighterTwoWins = 0;
+    private int currentScene;
 
     public BattleController battle;
 
@@ -24,26 +25,78 @@ public class HudController : MonoBehaviour
     {
         leftText.text = player1.fighterName;
         rightText.text = player2.fighterName;
+        currentScene = SceneManager.GetActiveScene().buildIndex;
+    }
+
+    IEnumerator PlayerOneWin()
+    {
+        yield return new WaitForSeconds(3.0f);
+        if (player2.health <= 0)
+        {
+            fighterOneWins++;
+            if (fighterOneWins == 2)
+            {
+                fighterTwoWins = 0;
+                fighterOneWins = 0;
+                if (currentScene == 2)
+                    SceneManager.LoadScene(3);
+                else
+                    SceneManager.LoadScene(0);
+            }
+            else
+            {
+                SceneManager.LoadScene(currentScene);
+            }
+        }
+    }
+
+    IEnumerator PlayerTwoWin()
+    {
+        yield return new WaitForSeconds(3.0f);
+        if (player1.health <= 0)
+        {
+            fighterTwoWins++;
+            Debug.Log(fighterTwoWins);
+            if (fighterTwoWins == 2)
+            {
+                fighterTwoWins = 0;
+                fighterOneWins = 0;
+                SceneManager.LoadScene(0);
+            }
+            else
+            {
+                SceneManager.LoadScene(currentScene);
+            }
+        }
     }
     
-    //End1 is called when a player won a round, but not the whole match
+    //End1 is called when a player won a match, the scene is set to the main menu
     IEnumerator End1()
     {
         yield return new WaitForSeconds(3.0f);
         SceneManager.LoadScene(0);
     }
 
-    //End2 is called when a player won a match, the scene is set to the main menu
+    //End2 is called when a player won a round, but not the whole match
     IEnumerator End2()
     {
         yield return new WaitForSeconds(3.0f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(currentScene);
+    }
+
+    //End3 is clled when a player won a match against an easy bot
+    IEnumerator End3()
+    {
+        yield return new WaitForSeconds(3.0f);
+        SceneManager.LoadScene(3);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (roundTime > 0 && Time.time - lastTimeUpdate > 1)
+        Debug.Log(roundTime);
+        Debug.Log("AAAAAAAAAAa");
+        if (roundTime >= 0 && Time.time - lastTimeUpdate > 1)
         {
             roundTime--;
             timer.text = roundTime.ToString();
@@ -52,7 +105,8 @@ public class HudController : MonoBehaviour
             {
                 if (player1.health < player2.health)
                 {
-                    fighterTwoWins++;
+                    StartCoroutine(PlayerTwoWin());
+                    /*fighterTwoWins++;
                     if (fighterTwoWins == 2)
                     {
                         fighterTwoWins = 0;
@@ -62,54 +116,34 @@ public class HudController : MonoBehaviour
                     else
                     {
                         StartCoroutine(End2());
-                    }
+                    }*/
                 }
 
                 else if (player2.health < player1.health)
                 {
-                    fighterOneWins++;
+                    StartCoroutine(PlayerOneWin());
+                    /*fighterOneWins++;
                     if (fighterOneWins == 2)
                     {
                         fighterTwoWins = 0;
                         fighterOneWins = 0;
-                        StartCoroutine(End1());
+                        if (currentScene == 2)
+                            StartCoroutine(End3());
+                        else
+                            StartCoroutine(End1());
                     }
                     else
                     {
                         StartCoroutine(End2());
-                    }
-                }
-            }
-            if (player1.health <= 0)
-            {
-                fighterTwoWins++;
-                Debug.Log(fighterTwoWins);
-                if (fighterTwoWins == 2)
-                {
-                    fighterTwoWins = 0;
-                    fighterOneWins = 0;
-                    StartCoroutine(End1());
-                }
-                else
-                {
-                    StartCoroutine(End2());
+                    }*/
                 }
             }
 
+            if (player1.health <= 0)
+                StartCoroutine(PlayerTwoWin());
+
             if (player2.health <= 0)
-            {
-                fighterOneWins++;
-                if (fighterOneWins == 2)
-                {
-                    fighterTwoWins = 0;
-                    fighterOneWins = 0;
-                    StartCoroutine(End1());
-                }
-                else
-                {
-                    StartCoroutine(End2());
-                }
-            }
+                StartCoroutine(PlayerOneWin());
         }
     }
 }

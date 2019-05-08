@@ -1404,6 +1404,29 @@ CapsuleCollider:
   m_Height: 1.88
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &1253619136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253619134}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd179efd818aec48b11cbc2a3d2e13b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1: {fileID: 711522769}
+  player2: {fileID: 1253619137}
+  maxHealth: 100
+  health: 100
+  fighterName: Ken
+  player: 0
+  currentState: 0
+  health_UI: {fileID: 1590688296}
+  attackMultiplier: 1
+  defenseMultiplier: 1
+  speedMultiplier: 1
 --- !u!4 &1253619137 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400140, guid: 79cb1b99a3a25064bb6ed8d0810792c6,
@@ -1422,18 +1445,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 896d88d1fc9bf4d4da86e93d4c867dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1: {fileID: 0}
-  player2: {fileID: 0}
+  player1: {fileID: 711522769}
+  player2: {fileID: 1253619137}
   maxHealth: 100
   health: 100
   fighterName: Ken
-  player: 1
+  player: 3
   currentState: 0
-  period: 0.7
+  period: 0.5
   health_UI: {fileID: 1590688296}
-  attackMultiplier: 1
-  defenseMultiplier: 1
-  speedMultiplier: 1
+  attackMultiplier: 1.2
+  defenseMultiplier: 1.2
+  speedMultiplier: 1.2
 --- !u!54 &1253619139
 Rigidbody:
   m_ObjectHideFlags: 0
