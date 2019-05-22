@@ -28,6 +28,8 @@ public class Fighter : MonoBehaviour
     private float nextActionTime = 0.0f;
     public float period = 0.7f;
 
+    private AudioSource audioPlayer;
+
     protected Animator animator;
     private Rigidbody myBody;
     public Image health_UI;
@@ -41,6 +43,7 @@ public class Fighter : MonoBehaviour
     {
         myBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        audioPlayer = GetComponent<AudioSource>();
     }
     
     public void UpdateHumanInput()
@@ -243,6 +246,11 @@ public class Fighter : MonoBehaviour
         {
             animator.SetTrigger("DEAD");
         }
+    }
+
+    public void playSound(AudioClip sound)
+    {
+        GameUtils.playSound(sound, audioPlayer);
     }
 
     public Rigidbody body

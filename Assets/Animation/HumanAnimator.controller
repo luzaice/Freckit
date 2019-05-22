@@ -97,6 +97,7 @@ MonoBehaviour:
   horizontalForce: -10
   verticalForce: 200
   behaviorState: 3
+  soundEffect: {fileID: 0}
 --- !u!114 &114135528930473360
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -112,6 +113,7 @@ MonoBehaviour:
   horizontalForce: 5
   verticalForce: 0
   behaviorState: 5
+  soundEffect: {fileID: 8300000, guid: 78df3462d4f3ce24dbb52c2f483f4c3d, type: 3}
 --- !u!114 &114186040742338200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -127,6 +129,7 @@ MonoBehaviour:
   horizontalForce: 0
   verticalForce: 200
   behaviorState: 3
+  soundEffect: {fileID: 0}
 --- !u!114 &114241132070491624
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -142,6 +145,7 @@ MonoBehaviour:
   horizontalForce: 15
   verticalForce: 0
   behaviorState: 5
+  soundEffect: {fileID: 8300000, guid: 063aeb069712a7646958cbe556eb1211, type: 3}
 --- !u!114 &114242334076449340
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -157,6 +161,7 @@ MonoBehaviour:
   horizontalForce: 10
   verticalForce: 0
   behaviorState: 5
+  soundEffect: {fileID: 8300000, guid: 78df3462d4f3ce24dbb52c2f483f4c3d, type: 3}
 --- !u!114 &114258560856017958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -172,6 +177,7 @@ MonoBehaviour:
   horizontalForce: 15
   verticalForce: 250
   behaviorState: 3
+  soundEffect: {fileID: 0}
 --- !u!114 &114288144680161698
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -187,6 +193,7 @@ MonoBehaviour:
   horizontalForce: 0
   verticalForce: 0
   behaviorState: 9
+  soundEffect: {fileID: 8300000, guid: f6f44ca8c15753c45bcbaae4a968c74f, type: 3}
 --- !u!114 &114338364045776392
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,6 +209,7 @@ MonoBehaviour:
   horizontalForce: 0
   verticalForce: 0
   behaviorState: 10
+  soundEffect: {fileID: 8300000, guid: 39b6495884b005845bc935aacf79b05e, type: 3}
 --- !u!114 &114495583367551398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -217,6 +225,7 @@ MonoBehaviour:
   horizontalForce: 0
   verticalForce: 0
   behaviorState: 8
+  soundEffect: {fileID: 0}
 --- !u!114 &114600149625357964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -232,6 +241,7 @@ MonoBehaviour:
   horizontalForce: -3
   verticalForce: 0
   behaviorState: 7
+  soundEffect: {fileID: 8300000, guid: 986ba3b05899cf04e954d005ba76ede8, type: 3}
 --- !u!114 &114656119294370740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -247,6 +257,7 @@ MonoBehaviour:
   horizontalForce: 0
   verticalForce: 0
   behaviorState: 4
+  soundEffect: {fileID: 0}
 --- !u!114 &114954812034280046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -262,6 +273,7 @@ MonoBehaviour:
   horizontalForce: -15
   verticalForce: 0
   behaviorState: 6
+  soundEffect: {fileID: 8300000, guid: a1d00fb3f58caed458e62ff4e2cbc910, type: 3}
 --- !u!114 &114959583451118986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -277,6 +289,7 @@ MonoBehaviour:
   horizontalForce: 30
   verticalForce: 0
   behaviorState: 1
+  soundEffect: {fileID: 0}
 --- !u!114 &114969395247635422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -292,6 +305,7 @@ MonoBehaviour:
   horizontalForce: -20
   verticalForce: 0
   behaviorState: 2
+  soundEffect: {fileID: 0}
 --- !u!1101 &1101002940993818262
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

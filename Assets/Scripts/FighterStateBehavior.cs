@@ -8,6 +8,7 @@ public class FighterStateBehavior : StateMachineBehaviour
     public float verticalForce;
 
     public FighterStates behaviorState;
+    public AudioClip soundEffect;
 
     protected Fighter fighter;
 
@@ -18,8 +19,13 @@ public class FighterStateBehavior : StateMachineBehaviour
             fighter = animator.gameObject.GetComponent<Fighter>();
         }
 
-
         fighter.currentState = behaviorState;
+
+        if (soundEffect != null)
+        {
+            fighter.playSound(soundEffect);
+        }
+
         fighter.body.AddRelativeForce(new Vector3(0, verticalForce, 0));
     }
 
