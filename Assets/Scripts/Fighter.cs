@@ -7,7 +7,7 @@ public class Fighter : MonoBehaviour
 {
     public enum PlayerType
     {
-        HUMAN1, HUMAN2, EASYBOT
+        HUMAN1, HUMAN2, EASYBOT, MEDIUMBOT
     };
 
     public Transform player1, player2;
@@ -25,6 +25,11 @@ public class Fighter : MonoBehaviour
     public PlayerType player;
     public FighterStates currentState = FighterStates.IDLE;
 
+    private float nextActionTime = 0.0f;
+    public float period = 0.7f;
+
+    private AudioSource audioPlayer;
+
     protected Animator animator;
     private Rigidbody myBody;
     public Image health_UI;
@@ -38,12 +43,7 @@ public class Fighter : MonoBehaviour
     {
         myBody = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
-    }
-
-    IEnumerator Wait()
-    {
-        yield return new WaitForSeconds(1.5f);
-        rand = Random.Range(0, 4);
+        audioPlayer = GetComponent<AudioSource>();
     }
     
     public void UpdateHumanInput()
@@ -115,11 +115,11 @@ public class Fighter : MonoBehaviour
         }
     }
 
-    public void UpdateBotInput(float distance, int rand)
+    public void UpdateBotInput(float distance)
     {
         if (player.ToString() == "EASYBOT")
         {
-            Debug.Log("ABC");
+            rand = Random.Range(0, 4);
             if (distance >= 1.3)
             {
                 animator.SetBool("DEFEND", false);
@@ -135,8 +135,46 @@ public class Fighter : MonoBehaviour
                     animator.SetTrigger("PUNCH");
                 else if (rand == 3)
                     animator.SetBool("DEFEND", true);
+            }
+        }
 
-                Debug.Log(rand);
+        else if (player.ToString() == "MEDIUMBOT")
+        {
+            if (distance >= 1.3)
+            {
+                rand = Random.Range(0, 4);
+                animator.SetBool("DUCK", false);
+                if (rand <= 1)
+                {
+                    animator.SetBool("DEFEND", false);
+                    animator.SetBool("WALK", true);
+                }
+                else
+                {
+                    animator.SetBool("DEFEND", true);
+                    animator.SetBool("WALK", false);
+                }
+            }
+
+            else
+            {
+                rand = Random.Range(0, 5);
+                animator.SetBool("WALK", false);
+                animator.SetBool("DEFEND", false);
+                animator.SetBool("DUCK", false);
+                if (rand == 1 || rand == 0)
+                    animator.SetTrigger("KICK");
+                else if (rand == 2)
+                {
+                    animator.SetTrigger("PUNCH");
+                    animator.SetTrigger("PUNCH");
+                    animator.SetTrigger("PUNCH");
+                    animator.SetTrigger("PUNCH");
+                }
+                else if (rand == 3)
+                    animator.SetBool("DEFEND", true);
+                else
+                    animator.SetBool("DUCK", true);
             }
         }
     }
@@ -162,6 +200,8 @@ public class Fighter : MonoBehaviour
     {
         if(!invulnerable)
         {
+            if (currentState == FighterStates.DEFEND || currentState == FighterStates.TAKE_HIT_DEFEND)
+                damage /= 10;
             if (health >= damage / defenseMultiplier)
             {
                 health -= damage / defenseMultiplier;
@@ -197,17 +237,22 @@ public class Fighter : MonoBehaviour
         {
             UpdateHumanInput();
         }
-        if (player == PlayerType.EASYBOT)
+        if (Time.time > nextActionTime && player == PlayerType.EASYBOT || Time.time > nextActionTime && player == PlayerType.MEDIUMBOT )
         {
+            nextActionTime += period;
             distance_x = player2.position.x - player1.position.x;
-            StartCoroutine(Wait());
-            UpdateBotInput(distance_x, rand);
+            UpdateBotInput(distance_x);
         }
 
         if(health <= 0 && currentState != FighterStates.DEAD)
         {
             animator.SetTrigger("DEAD");
         }
+    }
+
+    public void playSound(AudioClip sound)
+    {
+        GameUtils.playSound(sound, audioPlayer);
     }
 
     public Rigidbody body
