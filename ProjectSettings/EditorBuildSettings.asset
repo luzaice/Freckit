@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Player vs Player.unity
     guid: 116e9175e7ee9c9429aed528f4202abe
   - enabled: 1
+    path: Assets/Scenes/Player vs Player City.unity
+    guid: 76bab783cab093e48999ae2b43f40ff8
+  - enabled: 1
+    path: Assets/Scenes/Player vs Player Forest.unity
+    guid: 66638a0f6e8465d42a0f0dec06a7aa86
+  - enabled: 1
     path: Assets/Scenes/Player vs easy bot.unity
     guid: 400bbced9230d0b4fa693f08fdad77f5
   - enabled: 1
