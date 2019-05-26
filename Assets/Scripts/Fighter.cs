@@ -200,6 +200,8 @@ public class Fighter : MonoBehaviour
     {
         if(!invulnerable)
         {
+            if (currentState == FighterStates.DEFEND || currentState == FighterStates.TAKE_HIT_DEFEND)
+                damage /= 10;
             if (health >= damage / defenseMultiplier)
             {
                 health -= damage / defenseMultiplier;

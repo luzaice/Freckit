@@ -8,7 +8,8 @@ public class HudController : MonoBehaviour
 {
     public Fighter player1;
     public Fighter player2;
-
+    public Transform characterList1;
+    public Transform characterList2;
     public Text leftText;
     public Text rightText;
     public int roundTime = 99;
@@ -23,6 +24,13 @@ public class HudController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (characterList1 != null && characterList2 != null)
+        {
+            player1 = characterList1.GetChild(PlayerPrefs.GetInt("Character1")).gameObject.GetComponent(typeof(Fighter)) as Fighter;
+            player1.gameObject.SetActive(true);
+            player2 = characterList2.GetChild(PlayerPrefs.GetInt("Character2")).gameObject.GetComponent(typeof(Fighter)) as Fighter;
+            player2.gameObject.SetActive(true);
+        }
         leftText.text = player1.fighterName;
         rightText.text = player2.fighterName;
         currentScene = SceneManager.GetActiveScene().buildIndex;
@@ -38,8 +46,8 @@ public class HudController : MonoBehaviour
             {
                 fighterTwoWins = 0;
                 fighterOneWins = 0;
-                if (currentScene == 2)
-                    SceneManager.LoadScene(3);
+                if (currentScene == 4)
+                    SceneManager.LoadScene(5);
                 else
                     SceneManager.LoadScene(0);
             }
@@ -88,7 +96,7 @@ public class HudController : MonoBehaviour
     IEnumerator End3()
     {
         yield return new WaitForSeconds(3.0f);
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(5);
     }
 
     // Update is called once per frame

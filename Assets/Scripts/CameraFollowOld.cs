@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollowOld : MonoBehaviour
 {
 
-    private Transform player1, player2;
-    public Transform characterList1;
-    public Transform characterList2;
+    public Transform player1, player2;
     float x;
 
     [SerializeField]
@@ -17,8 +15,6 @@ public class CameraFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player1 = characterList1.GetChild(PlayerPrefs.GetInt("Character1"));
-        player2 = characterList2.GetChild(PlayerPrefs.GetInt("Character2"));
     }
 
     // Update is called once per frame
