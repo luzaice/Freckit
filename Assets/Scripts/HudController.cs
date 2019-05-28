@@ -17,7 +17,7 @@ public class HudController : MonoBehaviour
     private float lastTimeUpdate = 0;
     public static int fighterOneWins = 0;
     public static int fighterTwoWins = 0;
-    private int currentScene;
+    private int currentScene; 
 
     public BattleController battle;
 
@@ -47,9 +47,18 @@ public class HudController : MonoBehaviour
                 fighterTwoWins = 0;
                 fighterOneWins = 0;
                 if (currentScene == 4)
+                {
+                    PlayerPrefs.SetInt("UpgradePoints", (PlayerPrefs.GetInt("UpgradePoints") + 1));
                     SceneManager.LoadScene(5);
-                else
+                }
+                else if (currentScene == 5)
+                {
+                    PlayerPrefs.SetInt("UpgradePoints", (PlayerPrefs.GetInt("UpgradePoints") + 1));
                     SceneManager.LoadScene(0);
+
+                }
+                else
+                SceneManager.LoadScene(0);
             }
             else
             {

@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private GameObject mainMenu;
     [SerializeField]
-    private Text playerName1, playerName2, mapName;
+    private Text playerName1, playerName2, mapName, points, strengthPoints, hitPoints;
     private int index1, index2, indexM;
     private string[] charEnum = { "Ryu", "Ken", "Char3" };
     //Maps are unnamed so far, we'll likely name them later. If you're one of our small team of devs, feel free to name them yourself!
@@ -92,5 +92,49 @@ public class MainMenu : MonoBehaviour
     {
 
         SceneManager.LoadScene(4);
+    }
+
+    public void Start()
+    {
+        points.text = "Points: " + PlayerPrefs.GetInt("UpgradePoints").ToString();
+        strengthPoints.text = "Strength:" + PlayerPrefs.GetInt("Strength").ToString();
+        hitPoints.text = "Hitpoints:" + PlayerPrefs.GetInt("Hitpoints").ToString();
+
+    }
+    public void AddStrength()
+    {
+        if (PlayerPrefs.GetInt("UpgradePoints") > 0)
+        {
+            PlayerPrefs.SetInt("UpgradePoints", (PlayerPrefs.GetInt("UpgradePoints") - 1));
+            PlayerPrefs.SetInt("Strength", (PlayerPrefs.GetInt("Strength") + 1));
+            strengthPoints.text = "Strength:" + PlayerPrefs.GetInt("Strength").ToString();
+        }
+    }
+    public void RemoveStrength()
+    {
+        if (PlayerPrefs.GetInt("Strength") > 0)
+        {
+            PlayerPrefs.SetInt("UpgradePoints", (PlayerPrefs.GetInt("UpgradePoints") + 1));
+            PlayerPrefs.SetInt("Strength", (PlayerPrefs.GetInt("Strength") - 1));
+            strengthPoints.text = "Strength:" + PlayerPrefs.GetInt("Strength").ToString();
+        }
+    }
+    public void AddHitpoints()
+    {
+        if (PlayerPrefs.GetInt("UpgradePoints") > 0)
+        {
+            PlayerPrefs.SetInt("UpgradePoints", (PlayerPrefs.GetInt("UpgradePoints") - 1));
+            PlayerPrefs.SetInt("Hitpoints", (PlayerPrefs.GetInt("Hitpoints") + 1));
+            hitPoints.text = "Hitpoints:" + PlayerPrefs.GetInt("Hitpoints").ToString();
+        }
+    }
+    public void RemoveHitpoints()
+    {
+        if (PlayerPrefs.GetInt("Hitpoints") > 0)
+        {
+            PlayerPrefs.SetInt("UpgradePoints", (PlayerPrefs.GetInt("UpgradePoints") + 1));
+            PlayerPrefs.SetInt("Hitpoints", (PlayerPrefs.GetInt("Hitpoints") - 1));
+            hitPoints.text = "Hitpoints:" + PlayerPrefs.GetInt("Hitpoints").ToString();
+        }
     }
 }
