@@ -97,8 +97,8 @@ public class MainMenu : MonoBehaviour
     public void Start()
     {
         points.text = "Points: " + PlayerPrefs.GetInt("UpgradePoints").ToString();
-        strengthPoints.text = "Strength:" + PlayerPrefs.GetInt("Strength").ToString();
-        hitPoints.text = "Hitpoints:" + PlayerPrefs.GetInt("Hitpoints").ToString();
+        strengthPoints.text = PlayerPrefs.GetInt("Strength").ToString();
+        hitPoints.text = PlayerPrefs.GetInt("Hitpoints").ToString();
 
     }
     public void AddStrength()
@@ -107,7 +107,8 @@ public class MainMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("UpgradePoints", (PlayerPrefs.GetInt("UpgradePoints") - 1));
             PlayerPrefs.SetInt("Strength", (PlayerPrefs.GetInt("Strength") + 1));
-            strengthPoints.text = "Strength:" + PlayerPrefs.GetInt("Strength").ToString();
+            strengthPoints.text = PlayerPrefs.GetInt("Strength").ToString();
+            points.text = "Points: " + PlayerPrefs.GetInt("UpgradePoints").ToString();
         }
     }
     public void RemoveStrength()
@@ -116,7 +117,8 @@ public class MainMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("UpgradePoints", (PlayerPrefs.GetInt("UpgradePoints") + 1));
             PlayerPrefs.SetInt("Strength", (PlayerPrefs.GetInt("Strength") - 1));
-            strengthPoints.text = "Strength:" + PlayerPrefs.GetInt("Strength").ToString();
+            strengthPoints.text = PlayerPrefs.GetInt("Strength").ToString();
+            points.text = "Points: " + PlayerPrefs.GetInt("UpgradePoints").ToString();
         }
     }
     public void AddHitpoints()
@@ -125,7 +127,8 @@ public class MainMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("UpgradePoints", (PlayerPrefs.GetInt("UpgradePoints") - 1));
             PlayerPrefs.SetInt("Hitpoints", (PlayerPrefs.GetInt("Hitpoints") + 1));
-            hitPoints.text = "Hitpoints:" + PlayerPrefs.GetInt("Hitpoints").ToString();
+            hitPoints.text = PlayerPrefs.GetInt("Hitpoints").ToString();
+            points.text = "Points: " + PlayerPrefs.GetInt("UpgradePoints").ToString();
         }
     }
     public void RemoveHitpoints()
@@ -134,7 +137,8 @@ public class MainMenu : MonoBehaviour
         {
             PlayerPrefs.SetInt("UpgradePoints", (PlayerPrefs.GetInt("UpgradePoints") + 1));
             PlayerPrefs.SetInt("Hitpoints", (PlayerPrefs.GetInt("Hitpoints") - 1));
-            hitPoints.text = "Hitpoints:" + PlayerPrefs.GetInt("Hitpoints").ToString();
+            hitPoints.text = PlayerPrefs.GetInt("Hitpoints").ToString();
+            points.text = "Points: " + PlayerPrefs.GetInt("UpgradePoints").ToString();
         }
     }
 }
