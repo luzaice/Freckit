@@ -111,8 +111,8 @@ public class HudController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(roundTime);
-        Debug.Log("AAAAAAAAAAa");
+        //Debug.Log(roundTime);
+        //Debug.Log("AAAAAAAAAAa");
         if (roundTime >= 0 && Time.time - lastTimeUpdate > 1)
         {
             roundTime--;
@@ -155,6 +155,8 @@ public class HudController : MonoBehaviour
                     }*/
                 }
             }
+
+            Debug.Log(player2.fighterName);
 
             if (player1.health <= 0)
                 StartCoroutine(PlayerTwoWin());

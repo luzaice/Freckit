@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8563da02c5470f34086f9ba0645d7fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalForce: 10
+  horizontalForce: 7
   verticalForce: 0
   behaviorState: 1
   soundEffect: {fileID: 0}
@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8563da02c5470f34086f9ba0645d7fc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalForce: -5
+  horizontalForce: -5.5
   verticalForce: 0
   behaviorState: 2
   soundEffect: {fileID: 0}
@@ -249,7 +249,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.82558143
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
@@ -490,7 +490,7 @@ AnimatorStateTransition:
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
   m_ExitTime: 0.82558143
-  m_HasExitTime: 1
+  m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
