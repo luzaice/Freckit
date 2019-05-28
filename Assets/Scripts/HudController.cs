@@ -54,6 +54,12 @@ public class HudController : MonoBehaviour
                 else if (currentScene == 5)
                 {
                     PlayerPrefs.SetInt("UpgradePoints", (PlayerPrefs.GetInt("UpgradePoints") + 1));
+                    SceneManager.LoadScene(6);
+
+                }
+                else if (currentScene == 6)
+                {
+                    PlayerPrefs.SetInt("UpgradePoints", (PlayerPrefs.GetInt("UpgradePoints") + 2));
                     SceneManager.LoadScene(0);
 
                 }
@@ -108,6 +114,13 @@ public class HudController : MonoBehaviour
         SceneManager.LoadScene(5);
     }
 
+    //End4 is called when a player won a match again a medium bot
+    IEnumerator End4()
+    {
+        yield return new WaitForSeconds(3.0f);
+        SceneManager.LoadScene(6);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -155,8 +168,6 @@ public class HudController : MonoBehaviour
                     }*/
                 }
             }
-
-            Debug.Log(player2.fighterName);
 
             if (player1.health <= 0)
                 StartCoroutine(PlayerTwoWin());
