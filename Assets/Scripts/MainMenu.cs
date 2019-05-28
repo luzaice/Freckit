@@ -73,7 +73,6 @@ public class MainMenu : MonoBehaviour
     public void Confirm()
     {
         PlayerPrefs.SetInt("Character1", index1);
-        Debug.Log(index1);
         PlayerPrefs.SetInt("Character2", index2);
         SceneManager.LoadScene(indexM + 1);
     }

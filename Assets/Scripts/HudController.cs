@@ -18,12 +18,15 @@ public class HudController : MonoBehaviour
     public static int fighterOneWins = 0;
     public static int fighterTwoWins = 0;
     private int currentScene; 
+    protected Animator animator;
 
     public BattleController battle;
 
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
+
         if (characterList1 != null && characterList2 != null)
         {
             player1 = characterList1.GetChild(PlayerPrefs.GetInt("Character1")).gameObject.GetComponent(typeof(Fighter)) as Fighter;
@@ -34,10 +37,18 @@ public class HudController : MonoBehaviour
         leftText.text = player1.fighterName;
         rightText.text = player2.fighterName;
         currentScene = SceneManager.GetActiveScene().buildIndex;
+
+        if (fighterOneWins + fighterTwoWins == 0)
+            animator.SetTrigger("RoundOne");
+        else if (fighterOneWins + fighterTwoWins == 1)
+            animator.SetTrigger("RoundTwo");
+        else
+            animator.SetTrigger("FinalRound");
     }
 
     IEnumerator PlayerOneWin()
     {
+        animator.SetTrigger("YouWin");
         yield return new WaitForSeconds(3.0f);
         if (player2.health <= 0)
         {
@@ -75,6 +86,7 @@ public class HudController : MonoBehaviour
 
     IEnumerator PlayerTwoWin()
     {
+        animator.SetTrigger("YouLose");
         yield return new WaitForSeconds(3.0f);
         if (player1.health <= 0)
         {
