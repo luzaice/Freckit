@@ -13,7 +13,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private Text playerName1, playerName2, mapName, points, strengthPoints, hitPoints;
     private int index1, index2, indexM;
-    private string[] charEnum = { "Ryu", "Ken", "Char3" };
+    private string[] charEnum = { "Ryu", "Ken", "Soldier", "Titan" };
     //Maps are unnamed so far, we'll likely name them later. If you're one of our small team of devs, feel free to name them yourself!
     
     public void PlayPLAYERvPLAYER()
