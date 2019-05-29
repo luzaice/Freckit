@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class HudController : MonoBehaviour
 {
+    const string imagePath = "UI/Character";
     public Fighter player1;
     public Fighter player2;
     public Transform characterList1;
     public Transform characterList2;
+    public Image characterImage1, characterImage2;
     public Text leftText;
     public Text rightText;
     public int roundTime = 99;
@@ -33,10 +35,18 @@ public class HudController : MonoBehaviour
             player1.gameObject.SetActive(true);
             player2 = characterList2.GetChild(PlayerPrefs.GetInt("Character2")).gameObject.GetComponent(typeof(Fighter)) as Fighter;
             player2.gameObject.SetActive(true);
+            characterImage1.sprite = Resources.Load<Sprite>(imagePath + (PlayerPrefs.GetInt("Character1") + 1).ToString() + "L") as Sprite;
+            characterImage2.sprite = Resources.Load<Sprite>(imagePath + (PlayerPrefs.GetInt("Character2") + 1).ToString() + "R") as Sprite;
         }
         leftText.text = player1.fighterName;
         rightText.text = player2.fighterName;
         currentScene = SceneManager.GetActiveScene().buildIndex;
+
+        if (currentScene >= 4) {
+            player1.health = player1.health + (PlayerPrefs.GetInt("Hitpoints") * 5);
+            player1.maxHealth = player1.maxHealth + (PlayerPrefs.GetInt("Hitpoints") * 5);
+            player1.attackMultiplier = player1.attackMultiplier + ((float)PlayerPrefs.GetInt("Strength") / 20);
+                }
 
         if (fighterOneWins + fighterTwoWins == 0)
             animator.SetTrigger("RoundOne");
